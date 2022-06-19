@@ -1,5 +1,6 @@
 package craft.jwt.security;
 
+import craft.jwt.jwt.JwtTokenVerifier;
 import craft.jwt.jwt.JwtUserAndPasswordAuthFilter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -20,6 +21,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilter(new JwtUserAndPasswordAuthFilter(authenticationManager()))
+                .addFilterAfter(new JwtTokenVerifier(), JwtUserAndPasswordAuthFilter.class)
                 .authorizeRequests()
                 .antMatchers("api/v1/**").permitAll()
                 .anyRequest()
