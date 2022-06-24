@@ -2,6 +2,7 @@ package craft.jwt.security;
 
 import craft.jwt.jwt.JwtTokenVerifier;
 import craft.jwt.jwt.JwtUserAndPasswordAuthFilter;
+import craft.jwt.model.CustomerDTO;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,7 +24,8 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtUserAndPasswordAuthFilter(authenticationManager()))
                 .addFilterAfter(new JwtTokenVerifier(), JwtUserAndPasswordAuthFilter.class)
                 .authorizeRequests()
-                .antMatchers("api/v1/**").permitAll()
+                .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
+                .antMatchers("/api/**").hasRole(ApplicationUserRole.CUSTOMER.toString())
                 .anyRequest()
                 .authenticated();
     }
