@@ -30,4 +30,6 @@ JWT is formed by three parts as:
 ### Java JWT: JSON Web Token for Java
 JJWT is a library often used by Java developer to create and sign JWT and also to verify that a JWT is valid.
 
+You can find a lot of info the [JJWT Github repo](**https://github.com/jwtk/jjwt#jws-read-key**)
+
 We used this library in this project in combination with spring security who provides the login service.
