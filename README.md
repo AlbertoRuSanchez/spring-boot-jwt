@@ -27,6 +27,18 @@ JWT is formed by three parts as:
 3. The server respond to the client with JWT with the user information, privileges and an expiration time
 4. The client can use the JWT in every request to the server until it expires
 
+### Pros and cons of JWT
+
+Pros :thumbsup:
+- Fast
+- Stateless
+- Used across many services at the same time
+
+Cons :thumbsdown:
+- Compromised secret key (used to sign and verify signature)
+- No visibility to logged-in users
+- Token can be stolen
+
 ### Java JWT: JSON Web Token for Java
 JJWT is a library often used by Java developer to create and sign JWT and also to verify that a JWT is valid.
 
