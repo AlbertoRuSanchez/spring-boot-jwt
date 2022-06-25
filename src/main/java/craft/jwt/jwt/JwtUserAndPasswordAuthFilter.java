@@ -18,11 +18,13 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Objects;
 
 @AllArgsConstructor
 public class JwtUserAndPasswordAuthFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
+    private final JwtConfig jwtConfig;
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
@@ -42,19 +44,17 @@ public class JwtUserAndPasswordAuthFilter extends UsernamePasswordAuthentication
     protected void successfulAuthentication(HttpServletRequest request,
                                             HttpServletResponse response,
                                             FilterChain chain,
-                                            Authentication authResult) throws IOException, ServletException {
-
-        String key = "ASDASDAS24243ASDADASD234234234WFDFTGDFGDSSDT2342342DAD23424AD234234";
+                                            Authentication authResult) {
 
         String token = Jwts.builder()
                 .setSubject(authResult.getName())
                 .claim("authorities", authResult.getAuthorities())
                 .setIssuedAt(new Date())
-                .setExpiration(java.sql.Date.valueOf(LocalDate.now().plusDays(5)))
-                .signWith(Keys.hmacShaKeyFor(key.getBytes()))
+                .setExpiration(java.sql.Date.valueOf(LocalDate.now().plusDays(jwtConfig.getTokenExpirationAfterDays())))
+                .signWith(jwtConfig.getSecretKeyForSign())
                 .compact();
 
-        response.addHeader("Authorization" , "Bearer " + token);
+        response.addHeader(jwtConfig.getAuthorizationHeader() , jwtConfig.getTokenPrefix() + token);
 
     }
 }
