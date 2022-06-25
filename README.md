@@ -19,6 +19,8 @@ JWT is formed by three parts as:
   
 - Signature: needed to validate the token
 
+You will find more and probably clearer info about JWT in the official web : [jwt.io](https://jwt.io/introduction)
+
 ### JWT flow
 [![jwt-flow.jpg](https://i.postimg.cc/4xdX3Jxw/jwt-flow.jpg)](https://postimg.cc/HVfqZ157)
 
