@@ -1,7 +1,7 @@
 ## JWT example with spring security
 
 ### ¿Why this project?
-This project is made just for fun and mainly to really understand how JWT works. As many other concepts in the software development universe, technologies, frameworks o just concepts remain sometimes abstract and not easy to understand nearly always is needed to put on practice what you are trying to learn.
+This project is made just for fun and mainly to really understand how JWT works. As many other concepts in the software development universe, technologies, frameworks o just concepts remain sometimes abstract and not easy to understand and nearly always is needed to put on practice what you are trying to learn.
 
 ### ¿What is a token?
 A token is nothing but a string of serialized characters and used for authentication between two parts. 
